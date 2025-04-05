@@ -1,9 +1,17 @@
 body {
-    background: white;
-    color: black;
-    font-family: Inter;
-  }
+  background: white;
+  color: black;
+  font-family: Inter;
+}
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 100px;
+}
 .textinputcontainer {
   display: flex;
   flex-direction: column;
@@ -11,47 +19,190 @@ body {
   gap: 8px;
 }
 
-.textinputcontainer .question {
-    color: var(--variable-collection-black-4);
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.question {
+  color: var(--variable-collection-black-4);
+  margin-bottom: 8px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .textinputcontainer .textinputfield {
-    display: flex;
-    height: 52px;
-    padding: 8px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
-    border-radius: 8px;
-    border: 1px solid var(--Black-1, #CFD3D4);
-    font-size: 16px;
-    outline: none;
+  display: flex;
+  padding: 12px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--Black-1, #cfd3d4);
+  font-size: 14px;
+  outline: none;
 }
 
 .textinputcontainer .textinputfield:focus {
-    border-color: var(--variable-collection-primary);
+  border-color: var(--variable-collection-primary);
 }
 
 .textinputfield.invalid {
   border-color: var(--variable-collection-danger);
-  background-color: #ffe6e6; /* Light red background for better visibility */
+  background-color: #ffe6e6;
+}
+
+.helpertext {
+  color: var(--variable-collection-danger);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.dropdown-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-container.focused .dropdown-toggle {
+  border-color: var(--variable-collection-primary);
+}
+
+.dropdown-container.filled .dropdown-toggle {
+  border: 1px solid var(--variable-collection-black-4, #5e6366); /* Add border width and style */
+}
+
+.dropdown-container.invalid .dropdown-toggle {
+  border: var(--variable-collection-danger);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-toggle {
+  display: flex;
+  width: 375px;
+  padding: 12px 16px;
+  flex-direction: space-between;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+
+  border-radius: 8px;
+  border: 1px solid var(--Black-1, #cfd3d4);
+  background-color: white;
+  color: var(--Black-1, #5e6366);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.dropdown .dropdown-menu {
+  display: flex;
+  width: 375px;
+  padding: 12px 16px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 0px 0px 8px 8px;
+  border: 1px solid var(--Black-1, #cfd3d4);
+  background: #fff;
+}
+
+.dropdown .dropdown-item {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 0px;
+  font-size: 14px;
+  color: var(--Black-1, #5e6366);
+}
+
+.options {
+  display: flex;
+  width: 375px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 14px;
+  flex-wrap: wrap;
+}
+
+.option-box {
+  display: flex;
+  width: 215px;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+
+  color: var(--Black-3, #83898c);
+  text-align: right;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.radio-button {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--Black-1, #cfd3d4);
+}
+
+.option-box.selected {
+    color: var(--Black-5, #2B2F32);
+}
+
+.option-box.selected .radio-button {
+  background-color: var(--variable-collection-primary, #5570f1);
+  border-color: 1px white;
+  box-shadow: 0 0 0px 1px var(--variable-collection-primary, #5570f1);
 }
 
 .submit-button {
-  background-color: var(--variable-collection-primary, #5570F1);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
+  display: flex;
+  width: 375px;
+  padding: 17px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--Primary, #5570f1);
   transition: background-color 0.3s ease;
+
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .submit-button:hover {

@@ -7,6 +7,7 @@ interface TextInputProps {
   onChange?: (value: string) => void;
   type?: "text" | "number";
   isValid?: boolean;
+  helperText?: string;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -16,10 +17,10 @@ const TextInput: React.FC<TextInputProps> = ({
   onChange,
   type = "text",
   isValid = true,
+  helperText = '',
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-
     if (onChange) {
       onChange(newValue);
     }
@@ -35,6 +36,7 @@ const TextInput: React.FC<TextInputProps> = ({
         placeholder={placeholder}
         className={`textinputfield ${!isValid ? "invalid" : ""}`}
       />
+      {!isValid && <div className="helpertext">{helperText}</div>}
     </div>
   );
 };
