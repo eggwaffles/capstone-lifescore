@@ -40,7 +40,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({
           </div>
         ))}
       </div>
-      {!isValid && <div className="helpertext">{helperText}</div>} {/* Show helper text if invalid */}
+      {!isValid && <div className="helpertext">{helperText}</div>}
     </div>
   );
 };

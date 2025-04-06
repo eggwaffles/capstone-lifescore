@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
-import TextInput from '../components/TextInput';
-import SubmitButton from '../components/SubmitButton';
+import React, { useState } from "react";
+import TextInput from "../components/TextInput";
+import SubmitButton from "../components/SubmitButton";
 import "../components/styles.css";
-import Dropdown from '../components/Dropdown';
-import MultipleChoice from '../components/MultipleChoice';
+import Dropdown from "../components/Dropdown";
+import MultipleChoice from "../components/MultipleChoice";
+import SideMenu from "../components/SideMenu";
 
 interface FormField {
   value: string;
@@ -47,19 +48,24 @@ const App: React.FC = () => {
   const handleSubmit = async () => {
     const updatedFormData = { ...formData };
 
-    (Object.keys(updatedFormData) as Array<keyof typeof updatedFormData>).forEach((field) => {
+    (
+      Object.keys(updatedFormData) as Array<keyof typeof updatedFormData>
+    ).forEach((field) => {
       const value = updatedFormData[field].value;
 
       if (field === "category" || field === "favoriteColor") {
         updatedFormData[field].isValid = value.trim() !== "";
       } else {
-        updatedFormData[field].isValid = !isNaN(Number(value)) && Number(value) >= 0;
+        updatedFormData[field].isValid =
+          !isNaN(Number(value)) && Number(value) >= 0;
       }
     });
 
     setFormData(updatedFormData);
 
-    const allValid = Object.values(updatedFormData).every((field) => field.isValid);
+    const allValid = Object.values(updatedFormData).every(
+      (field) => field.isValid
+    );
 
     if (allValid) {
       const payload = Object.keys(updatedFormData).reduce((acc, field) => {
@@ -94,49 +100,59 @@ const App: React.FC = () => {
 
   return (
     <div className="main">
-      <TextInput
-        question="Income"
-        value={formData.income.value}
-        onChange={(value) => handleInputChange("income", value)}
-        placeholder="Enter your income"
-        type="number"
-        isValid={formData.income.isValid}
-        helperText="Please enter a valid number."
-      />
-      <TextInput
-        question="Debt"
-        value={formData.debt.value}
-        onChange={(value) => handleInputChange("debt", value)}
-        placeholder="Enter your debt"
-        type="number"
-        isValid={formData.debt.isValid}
-        helperText="Please enter a valid number."
-      />
-      <TextInput
-        question="Followers"
-        value={formData.followers.value}
-        onChange={(value) => handleInputChange("followers", value)}
-        placeholder="Enter your followers"
-        type="number"
-        isValid={formData.followers.isValid}
-        helperText="Please enter a valid number."
-      />
-      <Dropdown
-        question="Category"
-        items={["Business", "Personal", "Other"]}
-        placeholder="Select a category"
-        onSelect={handleDropdownSelect}
-        isValid={formData.category.isValid}
-        helperText="Please select a category."
-      />
-      <MultipleChoice
-        question="What is your favorite color?"
-        items={["Red", "Blue", "Green", "Yellow"]}
-        onSelect={handleMultipleChoiceSelect}
-        isValid={formData.favoriteColor.isValid} // Pass isValid state
-        helperText="Please select your favorite color." // Pass helper text
-      />
-      <SubmitButton onClick={handleSubmit} />
+      <div className="header">
+        <h2>header here</h2>
+      </div>
+      <div className="quiz-container">
+        <div>
+          <SideMenu />
+        </div>
+        <div className="question-set">
+          <TextInput
+            question="Income"
+            value={formData.income.value}
+            onChange={(value) => handleInputChange("income", value)}
+            placeholder="Enter your income"
+            type="number"
+            isValid={formData.income.isValid}
+            helperText="Please enter a valid number."
+          />
+          <TextInput
+            question="Debt"
+            value={formData.debt.value}
+            onChange={(value) => handleInputChange("debt", value)}
+            placeholder="Enter your debt"
+            type="number"
+            isValid={formData.debt.isValid}
+            helperText="Please enter a valid number."
+          />
+          <TextInput
+            question="Followers"
+            value={formData.followers.value}
+            onChange={(value) => handleInputChange("followers", value)}
+            placeholder="Enter your followers"
+            type="number"
+            isValid={formData.followers.isValid}
+            helperText="Please enter a valid number."
+          />
+          <Dropdown
+            question="Category"
+            items={["Business", "Personal", "Other"]}
+            placeholder="Select a category"
+            onSelect={handleDropdownSelect}
+            isValid={formData.category.isValid}
+            helperText="Please select a category."
+          />
+          <MultipleChoice
+            question="What is your favorite color?"
+            items={["Red", "Blue", "Green", "Yellow"]}
+            onSelect={handleMultipleChoiceSelect}
+            isValid={formData.favoriteColor.isValid}
+            helperText="Please select your favorite color."
+          />
+          <SubmitButton onClick={handleSubmit} />
+        </div>
+      </div>
     </div>
   );
 };

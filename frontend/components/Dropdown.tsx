@@ -35,14 +35,26 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div
       className={`dropdown-container ${
-        !isValid ? "invalid" : selectedItem ? "filled" : isOpen ? "focused" : "default"
+        !isValid
+          ? "invalid"
+          : isOpen
+          ? "focused"
+          : selectedItem
+          ? "filled"
+          : "default"
       }`}
     >
       <label className="question">{question}</label>
       <div className="dropdown">
         <button
           className={`dropdown-toggle ${
-            !isValid ? "invalid" : selectedItem ? "filled" : isOpen ? "focused" : "default"
+            !isValid
+              ? "invalid"
+              : isOpen
+              ? "focused"
+              : selectedItem
+              ? "filled"
+              : "default"
           }`}
           onClick={handleToggle}
         >
