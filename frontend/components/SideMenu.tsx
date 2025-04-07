@@ -11,11 +11,11 @@ const SideMenu: React.FC = () => {
     { id: 1, label: "Personal & Contact", link: "/personal" },
     { id: 2, label: "Demographic & Background", link: "/demographic" },
     { id: 3, label: "Education", link: "/education" },
-    { id: 4, label: "Profession", link: "/profession" },
+    { id: 4, label: "Work", link: "/work" },
     { id: 5, label: "Financial", link: "/financial" },
     { id: 6, label: "Health", link: "/health" },
     { id: 7, label: "Social", link: "/social" },
-    { id: 8, label: "Behavioral", link: "/behavioral" },
+    { id: 8, label: "Legal", link: "/legal" },
     { id: 9, label: "Submit", link: "/submit" },
   ];
 

@@ -2,14 +2,12 @@
 
 import React from "react";
 import TextInput from "../../components/TextInput";
-import SubmitButton from "../../components/SubmitButton";
 import Dropdown from "../../components/Dropdown";
 import DateInput from "../../components/DateInput";
 import SideMenu from "../../components/SideMenu";
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
-import { handleSubmit } from "../../utils/handleSubmit";
 
 const Personal: React.FC = () => {
   const { formData, setFormData } = useFormData();
@@ -26,11 +24,10 @@ const Personal: React.FC = () => {
 
   return (
     <div className="quiz-container">
-      <div style={{ display: "flex", width: "100%", flexDirection: "row", alignItems: "flex-start", gap: "20px" }}>
         <SideMenu />
         <div className="question-set">
           <h3>Personal and Contact Information</h3>
-            <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
+          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
             <TextInput
               question="Full Name"
               value={formData.fullName.value}
@@ -47,7 +44,7 @@ const Personal: React.FC = () => {
               isValid={formData.birthday.isValid}
               helperText="Please enter a valid date."
             />
-            </div>
+          </div>
           <TextInput
             question="Permanent Street Address"
             value={formData.streetAddress.value}
@@ -57,33 +54,33 @@ const Personal: React.FC = () => {
             isValid={formData.streetAddress.isValid}
             helperText="Please enter your street address."
           />
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%"}}>
-          <TextInput
-            question="City"
-            value={formData.city.value}
-            onChange={(value) => handleInputChange("city", value, setFormData)}
-            placeholder="Enter your city"
-            type="text"
-            isValid={formData.city.isValid}
-            helperText="Please enter your city."
-          />
-          <Dropdown
-            question="State"
-            items={usStates}
-            placeholder="Select your state"
-            onSelect={(selected) => handleDropdownSelect(selected, setFormData)}
-            isValid={formData.state.isValid}
-            helperText="Please select your state."
-          />
-          <TextInput
-            question="ZIP Code"
-            value={formData.zipCode.value}
-            onChange={(value) => handleInputChange("zipCode", value, setFormData)}
-            placeholder="Enter your ZIP code"
-            type="number"
-            isValid={formData.zipCode.isValid}
-            helperText="Please enter a valid ZIP code."
-          />
+          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
+            <TextInput
+              question="City"
+              value={formData.city.value}
+              onChange={(value) => handleInputChange("city", value, setFormData)}
+              placeholder="Enter your city"
+              type="text"
+              isValid={formData.city.isValid}
+              helperText="Please enter your city."
+            />
+            <Dropdown
+              question="State"
+              items={usStates}
+              placeholder="Select your state"
+              onSelect={(selected) => handleDropdownSelect(selected, setFormData)}
+              isValid={formData.state.isValid}
+              helperText="Please select your state."
+            />
+            <TextInput
+              question="ZIP Code"
+              value={formData.zipCode.value}
+              onChange={(value) => handleInputChange("zipCode", value, setFormData)}
+              placeholder="Enter your ZIP code"
+              type="number"
+              isValid={formData.zipCode.isValid}
+              helperText="Please enter a valid ZIP code."
+            />
           </div>
           <TextInput
             question="Phone Number"
@@ -114,8 +111,6 @@ const Personal: React.FC = () => {
           />
         </div>
       </div>
-      <SubmitButton onClick={() => handleSubmit(formData)} />
-    </div>
   );
 };
 

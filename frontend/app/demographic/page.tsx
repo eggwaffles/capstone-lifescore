@@ -3,12 +3,10 @@
 import React from "react";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
-import SubmitButton from "../../components/SubmitButton";
 import SideMenu from "../../components/SideMenu";
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
-import { handleSubmit } from "../../utils/handleSubmit";
 
 const Family: React.FC = () => {
   const { formData, setFormData } = useFormData();
@@ -26,7 +24,6 @@ const Family: React.FC = () => {
 
   return (
     <div className="quiz-container">
-      <div style={{ display: "flex", width: "100%", flexDirection: "row", alignItems: "flex-start", gap: "20px" }}>
         <SideMenu />
         <div className="question-set">
           <h3>Demographic & Background</h3>
@@ -34,7 +31,7 @@ const Family: React.FC = () => {
           <Dropdown
             question="Marital Status"
             items={maritalStatusOptions}
-            placeholder="Select your marital status"
+            placeholder="Please select"
             onSelect={(value) => handleDropdownSelect("maritalStatus", value, setFormData)}
             isValid={formData.maritalStatus.isValid}
             helperText="Please select your marital status."
@@ -106,8 +103,6 @@ const Family: React.FC = () => {
           </div>
         </div>
       </div>
-      <SubmitButton onClick={() => handleSubmit(formData)} />
-    </div>
   );
 };
 

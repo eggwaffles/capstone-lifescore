@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState } from "react";
 interface FormField {
   value: string;
   isValid: boolean;
-  componentType: "TextInput" | "Dropdown" | "DateInput" | "NumberInput" | "MultiSelect" | "TextArea";
+  componentType: "TextInput" | "Dropdown" | "DateInput" | "NumberInput" | "MultiSelect" | "TextArea" | "MultipleChoice";
   inputType?: "text" | "number" | "email" | "date";
 }
 
@@ -31,19 +31,74 @@ export type FormData = {
   parentEducationLevel: FormField;
   householdIncome: FormField;
 
-// Education Data
-highestEducation: FormField;
-recentSchool: FormField;
+  // Education Data
+  highestEducation: FormField;
+  recentSchool: FormField;
 
-// Profession Data
-industry: FormField;
-employmentStatus: FormField;
-jobTitle: FormField;
-yearsInRole: FormField;
-promotionReceived: FormField;
-performanceReview: FormField;
-referenceEmail: FormField;
-employmentGaps: FormField;
+  // Profession Data
+  industry: FormField;
+  employmentStatus: FormField;
+  jobTitle: FormField;
+  company: FormField;
+  yearsInRole: FormField;
+  promotionReceived: FormField;
+  referenceEmail: FormField;
+  employmentGaps: FormField;
+
+  // Financial Data
+  monthlyIncome: FormField;
+  monthlyExpenses: FormField;
+  liquidAssets: FormField;
+  longTermInvestments: FormField;
+  outstandingDebt: FormField;
+  onTimePayments: FormField;
+  creditUtilization: FormField;
+  creditLimit: FormField;
+  emergencyFund: FormField;
+  bankruptcy: FormField;
+  financialAssistance: FormField;
+
+  // Health Data
+  currentDiagnoses: FormField;
+  pastDiagnoses: FormField;
+  generalHealth: FormField;
+  smokeOrVape: FormField;
+  alcoholConsumption: FormField;
+  exerciseFrequency: FormField;
+  sleepHours: FormField;
+  completedCheckups: FormField;
+  medications: FormField;
+  mentalHealthSupport: FormField;
+  wearableDevice: FormField;
+  dailySteps: FormField;
+
+  // Social Data
+  activeSocialMedia: FormField;
+  totalFollowers: FormField;
+  engagementFrequency: FormField;
+  linkedinConnections: FormField;
+  communities: FormField;
+  mentoredSomeone: FormField;
+  beenMentored: FormField;
+  volunteering: FormField;
+  monthlyVolunteerHours: FormField;
+  eventAttendance: FormField;
+  communitySupport: FormField;
+
+  // Legal Data
+  misdemeanorConviction: FormField;
+  felonyConviction: FormField;
+  pendingCharges: FormField;
+  incarceration: FormField;
+  rehabilitationProgram: FormField;
+  lawsuitDefendant: FormField;
+  eviction: FormField;
+  validDriversLicense: FormField;
+  movingViolations: FormField;
+  duiConviction: FormField;
+  atFaultAccident: FormField;
+  paroleViolation: FormField;
+  legalDisputes: FormField;
 };
 
 interface FormDataContextType {
@@ -84,11 +139,66 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     industry: { value: "", isValid: true, componentType: "TextInput", inputType: "text" },
     employmentStatus: { value: "", isValid: true, componentType: "Dropdown" },
     jobTitle: { value: "", isValid: true, componentType: "TextInput", inputType: "text" },
+    company: { value: "", isValid: true, componentType: "TextInput", inputType: "text" },
     yearsInRole: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
-    promotionReceived: { value: "", isValid: true, componentType: "Dropdown" },
-    performanceReview: { value: "", isValid: true, componentType: "Dropdown" },
+    promotionReceived: { value: "", isValid: true, componentType: "Dropdown" },    
     referenceEmail: { value: "", isValid: true, componentType: "TextInput", inputType: "email" },
     employmentGaps: { value: "", isValid: true, componentType: "Dropdown" },
+  
+    // Financial Data
+    monthlyIncome: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    monthlyExpenses: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    liquidAssets: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    longTermInvestments: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    outstandingDebt: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    onTimePayments: { value: "", isValid: true, componentType: "Dropdown" },
+    creditUtilization: { value: "", isValid: true, componentType: "Dropdown" },
+    creditLimit: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    emergencyFund: { value: "", isValid: true, componentType: "Dropdown" },
+    bankruptcy: { value: "", isValid: true, componentType: "Dropdown" },
+    financialAssistance: { value: "", isValid: true, componentType: "MultiSelect" },
+
+    // Health Data
+    currentDiagnoses: { value: "", isValid: true, componentType: "TextArea" },
+    pastDiagnoses: { value: "", isValid: true, componentType: "TextArea" },
+    generalHealth: { value: "", isValid: true, componentType: "Dropdown" },
+    smokeOrVape: { value: "", isValid: true, componentType: "Dropdown" },
+    alcoholConsumption: { value: "", isValid: true, componentType: "Dropdown" },
+    exerciseFrequency: { value: "", isValid: true, componentType: "Dropdown" },
+    sleepHours: { value: "", isValid: true, componentType: "Dropdown" },
+    completedCheckups: { value: "", isValid: true, componentType: "MultiSelect" },
+    medications: { value: "", isValid: true, componentType: "Dropdown" },
+    mentalHealthSupport: { value: "", isValid: true, componentType: "Dropdown" },
+    wearableDevice: { value: "", isValid: true, componentType: "Dropdown" },
+    dailySteps: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    
+    // Social Data
+    activeSocialMedia: { value: "", isValid: true, componentType: "Dropdown" },
+    totalFollowers: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    engagementFrequency: { value: "", isValid: true, componentType: "Dropdown" },
+    linkedinConnections: { value: "", isValid: true, componentType: "Dropdown" },
+    communities: { value: "", isValid: true, componentType: "MultiSelect" },
+    mentoredSomeone: { value: "", isValid: true, componentType: "Dropdown" },
+    beenMentored: { value: "", isValid: true, componentType: "Dropdown" },
+    volunteering: { value: "", isValid: true, componentType: "Dropdown" },
+    monthlyVolunteerHours: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    eventAttendance: { value: "", isValid: true, componentType: "Dropdown" },
+    communitySupport: { value: "", isValid: true, componentType: "Dropdown" },
+
+    // Legal Data
+    misdemeanorConviction: { value: "", isValid: true, componentType: "MultipleChoice" },
+    felonyConviction: { value: "", isValid: true, componentType: "MultipleChoice" },
+    pendingCharges: { value: "", isValid: true, componentType: "MultipleChoice" },
+    incarceration: { value: "", isValid: true, componentType: "MultipleChoice" },
+    rehabilitationProgram: { value: "", isValid: true, componentType: "MultipleChoice" },
+    lawsuitDefendant: { value: "", isValid: true, componentType: "MultipleChoice" },
+    eviction: { value: "", isValid: true, componentType: "MultipleChoice" },
+    validDriversLicense: { value: "", isValid: true, componentType: "Dropdown" },
+    movingViolations: { value: "", isValid: true, componentType: "Dropdown" },
+    duiConviction: { value: "", isValid: true, componentType: "MultipleChoice" },
+    atFaultAccident: { value: "", isValid: true, componentType: "MultipleChoice" },
+    paroleViolation: { value: "", isValid: true, componentType: "MultipleChoice" },
+    legalDisputes: { value: "", isValid: true, componentType: "MultipleChoice" },
   });
 
   return (

@@ -9,7 +9,14 @@ interface MultiSelectProps {
   helperText?: string;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({ question, items, selectedValues, onChange, isValid, helperText }) => {
+const MultiSelect: React.FC<MultiSelectProps> = ({
+  question,
+  items,
+  selectedValues,
+  onChange,
+  isValid,
+  helperText,
+}) => {
   const [selected, setSelected] = useState<string[]>(selectedValues);
 
   const handleSelect = (value: string) => {
@@ -22,21 +29,22 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ question, items, selectedValu
 
   return (
     <div className="multi-select-container">
-      <label>{question}</label>
+      <div className="question">{question}</div>
       <div className="multi-select">
-        {items.map((item, index) => (
-          <label key={index} className="multi-select-item">
-            <input
-              type="checkbox"
-              value={item}
-              checked={selected.includes(item)}
-              onChange={() => handleSelect(item)}
-            />
+        {items.map((item) => (
+          <div
+            key={item}
+            className={`option-box ${
+              selected.includes(item) ? "selected" : ""
+            }`}
+            onClick={() => handleSelect(item)}
+          >
+            <div className="checkbox"></div>
             {item}
-          </label>
+          </div>
         ))}
       </div>
-      {!isValid && <p className="helper-text">{helperText}</p>}
+      {!isValid && <div className="helpertext">{helperText}</div>}
     </div>
   );
 };
