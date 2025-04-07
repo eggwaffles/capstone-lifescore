@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
 import SideMenuItem from "./SideMenuItem";
+import { usePathname } from "next/navigation";
 
 const SideMenu: React.FC = () => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const pathname = usePathname();
 
   const menuItems = [
-    { id: 1, label: "Home", link: "/" },
-    { id: 2, label: "Profile", link: "/" },
-    { id: 3, label: "Settings", link: "/" },
+    { id: 1, label: "Personal & Contact", link: "/personal" },
+    { id: 2, label: "Demographic & Background", link: "/demographic" },
+    { id: 3, label: "Education", link: "/education" },
+    { id: 4, label: "Profession", link: "/profession" },
+    { id: 5, label: "Financial", link: "/financial" },
+    { id: 6, label: "Health", link: "/health" },
+    { id: 7, label: "Social", link: "/social" },
+    { id: 8, label: "Behavioral", link: "/behavioral" },
+    { id: 9, label: "Submit", link: "/submit" },
   ];
-
-  const handleItemClick = (id: number) => {
-    setSelectedId(id);
-  };
 
   return (
     <div className="sidemenu">
@@ -21,8 +26,7 @@ const SideMenu: React.FC = () => {
           key={item.id}
           label={item.label}
           link={item.link}
-          isSelected={selectedId === item.id}
-          onClick={() => handleItemClick(item.id)}
+          isSelected={pathname === item.link}
         />
       ))}
     </div>
