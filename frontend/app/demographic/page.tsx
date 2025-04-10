@@ -31,6 +31,7 @@ const Family: React.FC = () => {
           <Dropdown
             question="Marital Status"
             items={maritalStatusOptions}
+            value={formData.maritalStatus.value}
             placeholder="Please select"
             onSelect={(value) => handleDropdownSelect("maritalStatus", value, setFormData)}
             isValid={formData.maritalStatus.isValid}
@@ -59,6 +60,7 @@ const Family: React.FC = () => {
           <Dropdown
             question="Ethnic or Racial Background"
             items={ethnicBackgroundOptions}
+            value={formData.ethnicBackground.value}
             placeholder="Select your ethnic or racial background"
             onSelect={(value) => handleDropdownSelect("ethnicBackground", value, setFormData)}
             isValid={formData.ethnicBackground.isValid}
@@ -67,6 +69,7 @@ const Family: React.FC = () => {
           <Dropdown
             question="Religious Affiliation or Practices"
             items={religiousAffiliationOptions}
+            value= {formData.religiousAffiliation.value}
             placeholder="Select your religious affiliation"
             onSelect={(value) => handleDropdownSelect("religiousAffiliation", value, setFormData)}
             isValid={formData.religiousAffiliation.isValid}
@@ -86,6 +89,7 @@ const Family: React.FC = () => {
           <Dropdown
             question="Parent/Guardian Highest Education Level"
             items={parentEducationOptions}
+            value={formData.parentEducationLevel.value}
             placeholder="Select the highest education level"
             onSelect={(value) => handleDropdownSelect("parentEducationLevel", value, setFormData)}
             isValid={formData.parentEducationLevel.isValid}

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios"; // Import axios for HTTP requests
 
 interface FormField {
   value: string;
@@ -200,6 +201,20 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     paroleViolation: { value: "", isValid: true, componentType: "MultipleChoice" },
     legalDisputes: { value: "", isValid: true, componentType: "MultipleChoice" },
   });
+
+  // Use useEffect to send updated formData to the server
+  useEffect(() => {
+    const sendFormDataToServer = async () => {
+      try {
+        await axios.post("http://localhost:5000/log-form-data", formData);
+        console.log("FormData sent to server:", formData);
+      } catch (error) {
+        console.error("Error sending formData to server:", error);
+      }
+    };
+
+    sendFormDataToServer();
+  }, [formData]); // Trigger whenever formData changes
 
   return (
     <FormDataContext.Provider value={{ formData, setFormData }}>

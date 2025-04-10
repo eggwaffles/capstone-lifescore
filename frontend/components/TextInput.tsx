@@ -5,7 +5,7 @@ interface TextInputProps {
   placeholder?: string;
   value?: string;
   onChange?: (value: string) => void;
-  type?: "text" | "number";
+  type?: "text" | "number" | "email";
   isValid?: boolean;
   helperText?: string;
 }

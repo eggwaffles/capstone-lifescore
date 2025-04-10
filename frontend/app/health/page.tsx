@@ -42,6 +42,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="How would you rate your general health?"
             items={generalHealthOptions}
+            value={formData.generalHealth.value}
             placeholder="Select your general health"
             onSelect={(value) => handleDropdownSelect("generalHealth", value, setFormData)}
             isValid={formData.generalHealth.isValid}
@@ -51,6 +52,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Do you smoke or vape?"
             items={yesNoOptions}
+            value={formData.smokeOrVape.value}
             placeholder="Select Yes or No"
             onSelect={(value) => handleDropdownSelect("smokeOrVape", value, setFormData)}
             isValid={formData.smokeOrVape.isValid}
@@ -59,6 +61,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Do you consume alcohol?"
             items={alcoholConsumptionOptions}
+            value={formData.alcoholConsumption.value}
             placeholder="Select your alcohol consumption frequency"
             onSelect={(value) => handleDropdownSelect("alcoholConsumption", value, setFormData)}
             isValid={formData.alcoholConsumption.isValid}
@@ -69,6 +72,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="How often do you exercise per week?"
             items={exerciseFrequencyOptions}
+            value={formData.exerciseFrequency.value}
             placeholder="Select your exercise frequency"
             onSelect={(value) => handleDropdownSelect("exerciseFrequency", value, setFormData)}
             isValid={formData.exerciseFrequency.isValid}
@@ -77,6 +81,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Do you sleep at least 7 hours per night on average?"
             items={yesNoOptions}
+            value={formData.sleepHours.value}
             placeholder="Select Yes or No"
             onSelect={(value) => handleDropdownSelect("sleepHours", value, setFormData)}
             isValid={formData.sleepHours.isValid}
@@ -95,6 +100,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Do you currently take any medications for physical or mental health?"
             items={yesNoOptions}
+            value={formData.medications.value}
             placeholder="Select Yes or No"
             onSelect={(value) => handleDropdownSelect("medications", value, setFormData)}
             isValid={formData.medications.isValid}
@@ -103,6 +109,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Have you been in therapy or sought mental health support in the past year?"
             items={yesNoOptions}
+            value={formData.mentalHealthSupport.value}
             placeholder="Select Yes or No"
             onSelect={(value) => handleDropdownSelect("mentalHealthSupport", value, setFormData)}
             isValid={formData.mentalHealthSupport.isValid}
@@ -112,6 +119,7 @@ const Health: React.FC = () => {
           <Dropdown
             question="Do you use a wearable device (Fitbit, Apple Watch, etc.)?"
             items={yesNoOptions}
+            value={formData.wearableDevice.value}
             placeholder="Select Yes or No"
             onSelect={(value) => handleDropdownSelect("wearableDevice", value, setFormData)}
             isValid={formData.wearableDevice.isValid}

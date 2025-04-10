@@ -24,93 +24,120 @@ const Personal: React.FC = () => {
 
   return (
     <div className="quiz-container">
-        <SideMenu />
-        <div className="question-set">
-          <h3>Personal and Contact Information</h3>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
-            <TextInput
-              question="Full Name"
-              value={formData.fullName.value}
-              onChange={(value) => handleInputChange("fullName", value, setFormData)}
-              placeholder="Enter your full name"
-              type="text"
-              isValid={formData.fullName.isValid}
-              helperText="Please enter your full name."
-            />
-            <DateInput
-              question="Birthday (MM/DD/YYYY)"
-              value={formData.birthday.value}
-              onChange={(value) => handleInputChange("birthday", value, setFormData)}
-              isValid={formData.birthday.isValid}
-              helperText="Please enter a valid date."
-            />
-          </div>
+      <SideMenu />
+      <div className="question-set">
+        <h3>Personal and Contact Information</h3>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <TextInput
-            question="Permanent Street Address"
-            value={formData.streetAddress.value}
-            onChange={(value) => handleInputChange("streetAddress", value, setFormData)}
-            placeholder="Enter your street address"
+            question="Full Name"
+            value={formData.fullName.value}
+            onChange={(value) =>
+              handleInputChange("fullName", value, setFormData)
+            }
+            placeholder="Enter your full name"
             type="text"
-            isValid={formData.streetAddress.isValid}
-            helperText="Please enter your street address."
+            isValid={formData.fullName.isValid}
+            helperText="Please enter your full name."
           />
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
-            <TextInput
-              question="City"
-              value={formData.city.value}
-              onChange={(value) => handleInputChange("city", value, setFormData)}
-              placeholder="Enter your city"
-              type="text"
-              isValid={formData.city.isValid}
-              helperText="Please enter your city."
-            />
-            <Dropdown
-              question="State"
-              items={usStates}
-              placeholder="Select your state"
-              onSelect={(selected) => handleDropdownSelect(selected, setFormData)}
-              isValid={formData.state.isValid}
-              helperText="Please select your state."
-            />
-            <TextInput
-              question="ZIP Code"
-              value={formData.zipCode.value}
-              onChange={(value) => handleInputChange("zipCode", value, setFormData)}
-              placeholder="Enter your ZIP code"
-              type="number"
-              isValid={formData.zipCode.isValid}
-              helperText="Please enter a valid ZIP code."
-            />
-          </div>
-          <TextInput
-            question="Phone Number"
-            value={formData.phoneNumber.value}
-            onChange={(value) => handleInputChange("phoneNumber", value, setFormData)}
-            placeholder="Enter your phone number (###-###-####)"
-            type="text"
-            isValid={formData.phoneNumber.isValid}
-            helperText="Please enter a valid phone number."
-          />
-          <TextInput
-            question="Email"
-            value={formData.email.value}
-            onChange={(value) => handleInputChange("email", value, setFormData)}
-            placeholder="Enter your email"
-            type="email"
-            isValid={formData.email.isValid}
-            helperText="Please enter a valid email address."
-          />
-          <TextInput
-            question="Social Security Number / National ID"
-            value={formData.ssn.value}
-            onChange={(value) => handleInputChange("ssn", value, setFormData)}
-            placeholder="Enter your SSN or National ID"
-            type="number"
-            isValid={formData.ssn.isValid}
-            helperText="Please enter a valid SSN or National ID."
+          <DateInput
+            question="Birthday (MM/DD/YYYY)"
+            value={formData.birthday.value}
+            onChange={(value) =>
+              handleInputChange("birthday", value, setFormData)
+            }
+            isValid={formData.birthday.isValid}
+            helperText="Please enter a valid date."
           />
         </div>
+        <TextInput
+          question="Permanent Street Address"
+          value={formData.streetAddress.value}
+          onChange={(value) =>
+            handleInputChange("streetAddress", value, setFormData)
+          }
+          placeholder="Enter your street address"
+          type="text"
+          isValid={formData.streetAddress.isValid}
+          helperText="Please enter your street address."
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <TextInput
+            question="City"
+            value={formData.city.value}
+            onChange={(value) => handleInputChange("city", value, setFormData)}
+            placeholder="Enter your city"
+            type="text"
+            isValid={formData.city.isValid}
+            helperText="Please enter your city."
+          />
+          <Dropdown
+            question="State"
+            items={usStates}
+            value={formData.state.value}
+            placeholder="Select your state"
+            onSelect={(selected) =>handleDropdownSelect("state", selected, setFormData)}
+            isValid={formData.state.isValid}
+            helperText="Please select your state."
+          />
+          <TextInput
+            question="ZIP Code"
+            value={formData.zipCode.value}
+            onChange={(value) =>
+              handleInputChange("zipCode", value, setFormData)
+            }
+            placeholder="Enter your ZIP code"
+            type="number"
+            isValid={formData.zipCode.isValid}
+            helperText="Please enter a valid ZIP code."
+          />
+        </div>
+        <TextInput
+          question="Phone Number"
+          value={formData.phoneNumber.value}
+          onChange={(value) =>
+            handleInputChange("phoneNumber", value, setFormData)
+          }
+          placeholder="Enter your phone number (###-###-####)"
+          type="text"
+          isValid={formData.phoneNumber.isValid}
+          helperText="Please enter a valid phone number."
+        />
+        <TextInput
+          question="Email"
+          value={formData.email.value}
+          onChange={(value) => handleInputChange("email", value, setFormData)}
+          placeholder="Enter your email"
+          type="email"
+          isValid={formData.email.isValid}
+          helperText="Please enter a valid email address."
+        />
+        <TextInput
+          question="Social Security Number / National ID"
+          value={formData.ssn.value}
+          onChange={(value) => handleInputChange("ssn", value, setFormData)}
+          placeholder="Enter your SSN or National ID"
+          type="number"
+          isValid={formData.ssn.isValid}
+          helperText="Please enter a valid SSN or National ID."
+        />
       </div>
+    </div>
   );
 };
 
