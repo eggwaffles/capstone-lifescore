@@ -13,9 +13,7 @@ const App: React.FC = () => {
 
   return (
     <div className="start-quiz-container">
-      <button onClick={handleStartQuiz}>
-        <SubmitButton label="Start Quiz" />
-      </button>
+      <SubmitButton label="Start Quiz" onClick={handleStartQuiz} />
     </div>
   );
 };

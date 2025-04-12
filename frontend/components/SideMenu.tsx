@@ -15,8 +15,9 @@ const SideMenu: React.FC = () => {
     { id: 5, label: "Financial", link: "/financial" },
     { id: 6, label: "Health", link: "/health" },
     { id: 7, label: "Social", link: "/social" },
-    { id: 8, label: "Legal", link: "/legal" },
-    { id: 9, label: "Submit", link: "/submit" },
+    { id: 8, label: "Community Involvement", link: "/community" },
+    { id: 9, label: "Legal and Criminal Record", link: "/legal" },
+    { id: 10, label: "Submit", link: "/submit" },
   ];
 
   return (

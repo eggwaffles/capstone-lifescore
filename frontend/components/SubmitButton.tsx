@@ -1,16 +1,14 @@
-import React from 'react';
+import React from "react";
 
 interface SubmitButtonProps {
-  onClick: () => void;
+  label: string;
+  onClick?: () => void;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({ onClick }) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
   return (
-    <button 
-      onClick={onClick} 
-      className="submit-button"
-    >
-      Submit
+    <button onClick={onClick} className="submit-button">
+      {label}
     </button>
   );
 };

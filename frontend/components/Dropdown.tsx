@@ -5,6 +5,7 @@ import React, { useState } from "react";
 interface DropdownProps {
   question: string;
   items: string[];
+  value: string;
   placeholder?: string;
   onSelect?: (selectedItem: string) => void;
   isValid?: boolean;
@@ -14,12 +15,12 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({
   question,
   items,
+  value,
   placeholder = "Select an option",
   onSelect,
   isValid = true,
   helperText = "",
 }) => {
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -27,9 +28,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   };
 
   const handleSelect = (item: string) => {
-    setSelectedItem(item);
-    setIsOpen(false);
     if (onSelect) onSelect(item);
+    setIsOpen(false);
   };
 
   return (
@@ -39,7 +39,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           ? "invalid"
           : isOpen
           ? "focused"
-          : selectedItem
+          : value
           ? "filled"
           : "default"
       }`}
@@ -52,13 +52,13 @@ const Dropdown: React.FC<DropdownProps> = ({
               ? "invalid"
               : isOpen
               ? "focused"
-              : selectedItem
+              : value
               ? "filled"
               : "default"
           }`}
           onClick={handleToggle}
         >
-          {selectedItem || placeholder}
+          {value || placeholder}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

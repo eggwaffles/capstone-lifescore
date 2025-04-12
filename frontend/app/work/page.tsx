@@ -39,14 +39,13 @@ const Work: React.FC = () => {
             helperText="Please enter your industry."
           />
           <Dropdown
-            question="Employment Status"
-            items={employmentStatusOptions}
-            placeholder="Select your employment status"
-            onSelect={(value) =>
-              handleDropdownSelect("employmentStatus", value, setFormData)
-            }
-            isValid={formData.employmentStatus.isValid}
-            helperText="Please select your employment status."
+          question="Employment Status"
+          items={employmentStatusOptions}
+          placeholder="Select your employment status"
+          value={formData.employmentStatus.value}
+          onSelect={(value) => handleDropdownSelect("employmentStatus", value, setFormData)}
+          isValid={formData.employmentStatus.isValid}
+          helperText="Please select your employment status."
           />
           <div
             style={{
@@ -102,9 +101,8 @@ const Work: React.FC = () => {
             question="Have you received a promotion or title change in this role?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
-            onSelect={(value) =>
-              handleDropdownSelect("promotionReceived", value, setFormData)
-            }
+            value={formData.promotionReceived.value}
+            onSelect={(value) => handleDropdownSelect("promotionReceived", value, setFormData)}
             isValid={formData.promotionReceived.isValid}
             helperText="Please select Yes or No."
           />
@@ -112,9 +110,8 @@ const Work: React.FC = () => {
             question="Have you had any employment gaps exceeding 9 months in the last 5 years?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
-            onSelect={(value) =>
-              handleDropdownSelect("employmentGaps", value, setFormData)
-            }
+            value={formData.employmentGaps.value}
+            onSelect={(value) => handleDropdownSelect("employmentGaps", value, setFormData)}
             isValid={formData.employmentGaps.isValid}
             helperText="Please select Yes or No."
           />

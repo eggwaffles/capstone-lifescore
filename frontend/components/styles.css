@@ -106,14 +106,12 @@ h3 {
 
 .question-set {
     display: flex;
-    max-height: calc(100vh - 150px);
     width: 75%;
     flex-direction: column;
     align-items: top;
     justify-content: top;
     gap: 20px;
-    padding-left: 16px;
-    overflow-y: auto;   
+    padding-left: 16px; 
 }
 
 .sidemenu {
@@ -242,7 +240,7 @@ h3 {
 
 .dropdown-menu {
   position: absolute;
-  max-height: 200px;
+  max-height: 400px;
   overflow-y: auto;
   top: 100%;
   left: 0;

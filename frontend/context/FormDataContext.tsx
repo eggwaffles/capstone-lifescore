@@ -78,9 +78,11 @@ export type FormData = {
   totalFollowers: FormField;
   engagementFrequency: FormField;
   linkedinConnections: FormField;
-  communities: FormField;
   mentoredSomeone: FormField;
   beenMentored: FormField;
+
+  // Community Data
+  communities: FormField;
   volunteering: FormField;
   monthlyVolunteerHours: FormField;
   eventAttendance: FormField;
@@ -178,9 +180,11 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     totalFollowers: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
     engagementFrequency: { value: "", isValid: true, componentType: "Dropdown" },
     linkedinConnections: { value: "", isValid: true, componentType: "Dropdown" },
-    communities: { value: "", isValid: true, componentType: "MultiSelect" },
     mentoredSomeone: { value: "", isValid: true, componentType: "Dropdown" },
     beenMentored: { value: "", isValid: true, componentType: "Dropdown" },
+
+    // Community Data
+    communities: { value: "", isValid: true, componentType: "MultiSelect" },
     volunteering: { value: "", isValid: true, componentType: "Dropdown" },
     monthlyVolunteerHours: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
     eventAttendance: { value: "", isValid: true, componentType: "Dropdown" },

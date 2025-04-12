@@ -40,6 +40,7 @@ const Social: React.FC = () => {
             question="Do you actively use social media?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
+            value={formData.activeSocialMedia.value}
             onSelect={(value) => handleDropdownSelect("activeSocialMedia", value, setFormData)}
             isValid={formData.activeSocialMedia.isValid}
             helperText="Please select Yes or No."
@@ -57,6 +58,7 @@ const Social: React.FC = () => {
             question="How often do you engage with your social media community (posts, replies, messages)?"
             items={engagementFrequencyOptions}
             placeholder="Engagement frequency"
+            value={formData.engagementFrequency.value}
             onSelect={(value) => handleDropdownSelect("engagementFrequency", value, setFormData)}
             isValid={formData.engagementFrequency.isValid}
             helperText="Please select your engagement frequency."
@@ -66,23 +68,17 @@ const Social: React.FC = () => {
             question="How many professional connections do you have on LinkedIn?"
             items={linkedinConnectionsOptions}
             placeholder="Select your LinkedIn connections"
+            value={formData.linkedinConnections.value}
             onSelect={(value) => handleDropdownSelect("linkedinConnections", value, setFormData)}
             isValid={formData.linkedinConnections.isValid}
             helperText="Please select your LinkedIn connections."
-          />
-          <MultiSelect
-            question="Are you currently part of any communities or organizations?"
-            items={communityOptions}
-            selectedValues={formData.communities.value.split(",")}
-            onChange={(values) => handleInputChange("communities", values.join(","), setFormData)}
-            isValid={formData.communities.isValid}
-            helperText="Please select all that apply."
           />
           <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-end", width: "100%" }}>
           <Dropdown
             question="Have you mentored someone in a formal or informal capacity in the past year?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
+            value={formData.mentoredSomeone.value}
             onSelect={(value) => handleDropdownSelect("mentoredSomeone", value, setFormData)}
             isValid={formData.mentoredSomeone.isValid}
             helperText="Please select Yes or No."
@@ -91,46 +87,12 @@ const Social: React.FC = () => {
             question="Have you been mentored by someone in the past year?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
+            value={formData.beenMentored.value}
             onSelect={(value) => handleDropdownSelect("beenMentored", value, setFormData)}
             isValid={formData.beenMentored.isValid}
             helperText="Please select Yes or No."
           />
           </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-end", width: "100%" }}>
-          <Dropdown
-            question="Do you regularly participate in volunteering or community service?"
-            items={yesNoOptions}
-            placeholder="Select Yes or No"
-            onSelect={(value) => handleDropdownSelect("volunteering", value, setFormData)}
-            isValid={formData.volunteering.isValid}
-            helperText="Please select Yes or No."
-          />
-          <TextInput
-            question="Average hours per month spent volunteering"
-            value={formData.monthlyVolunteerHours.value}
-            onChange={(value) => handleInputChange("monthlyVolunteerHours", value, setFormData)}
-            placeholder="Enter your average monthly volunteer hours"
-            type="number"
-            isValid={formData.monthlyVolunteerHours.isValid}
-            helperText="Please enter your average monthly volunteer hours."
-          />
-          <Dropdown
-            question="Do you attend local or public events (town halls, cultural events, meetups, etc.)?"
-            items={eventAttendanceOptions}
-            placeholder="Select your event attendance frequency"
-            onSelect={(value) => handleDropdownSelect("eventAttendance", value, setFormData)}
-            isValid={formData.eventAttendance.isValid}
-            helperText="Attendance frequency."
-          />
-          </div>
-          <Dropdown
-            question="Do you feel supported by your community or social network?"
-            items={communitySupportOptions}
-            placeholder="Select your level of agreement"
-            onSelect={(value) => handleDropdownSelect("communitySupport", value, setFormData)}
-            isValid={formData.communitySupport.isValid}
-            helperText="Please select your level of agreement."
-          />
         </div>
       </div>
   );

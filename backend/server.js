@@ -122,13 +122,31 @@ app.post('/process-success-score', async (req, res) => {
   
     try {
       const prompt = `
-        Based on the following user data, calculate a "Success Score" (on a scale of 0-100) and provide a brief explanation:
+        Based on the following user data, calculate a "Success Score" (on a scale of 0-1400):
         ${JSON.stringify(formData, null, 2)}
   
+        The score should reflect the user's potential for success in personal and professional life, considering factors like education, profession, financial stability, health, social engagement, and legal background.
+        Each subcategory-demographic, education, financial, health, legal, work, and social should be considered in the scoring. Each section is worth 200 points.
+        Provide a detailed explanation for each subcategory score, including how the data contributed to the score.
+        Please account for age and region when weighing the scores.
+        The total score should be the sum of all subcategory scores, with a maximum of 1400 points.
         Respond in the following JSON format:
         {
-          "score": <number>,
-          "explanation": "<string>"
+          "total score": <number>,
+          "demographic": <number>,
+          "demographic explanation": "<string>",
+            "education": <number>,
+            "education explanation": "<string>",
+            "financial": <number>,
+            "financial explanation": "<string>",
+            "health": <number>,
+            "health explanation": "<string>",
+            "legal": <number>,
+            "legal explanation": "<string>",
+            "work": <number>,
+            "work explanation": "<string>",
+            "social": <number>,
+            "social explanation": "<string>"
         }
       `;
   
