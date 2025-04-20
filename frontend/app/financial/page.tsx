@@ -5,6 +5,8 @@ import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import MultiSelect from "../../components/MultiSelect";
 import SideMenu from "../../components/SideMenu";
+import NavigationButtons from "../../components/NavigationButtons";
+
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
@@ -22,14 +24,28 @@ const Financial: React.FC = () => {
     "Disability or SSI", "Other", "None"
   ];
 
+  // Check if all required fields are filled and valid
+  const isNextEnabled =
+    formData.monthlyIncome.value &&
+    formData.monthlyExpenses.value &&
+    formData.liquidAssets.value &&
+    formData.longTermInvestments.value &&
+    formData.outstandingDebt.value &&
+    formData.onTimePayments.value &&
+    formData.creditUtilization.value &&
+    formData.creditLimit.value &&
+    formData.emergencyFund.value &&
+    formData.bankruptcy.value &&
+    formData.financialAssistance.value;
+
   return (
     <div className="quiz-container">
         <SideMenu />
         <div className="question-set">
           <h3>Financial Information</h3>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
+          <div className="question-row">
           <TextInput
-            question="Total monthly income after taxes"
+            question="What is your average monthly income?"
             value={formData.monthlyIncome.value}
             onChange={(value) => handleInputChange("monthlyIncome", value, setFormData)}
             placeholder="Enter your monthly income"
@@ -38,7 +54,7 @@ const Financial: React.FC = () => {
             helperText="Please enter your monthly income."
           />
           <TextInput
-            question="Average total monthly expenses"
+            question="What is your average monthly expenses?"
             value={formData.monthlyExpenses.value}
             onChange={(value) => handleInputChange("monthlyExpenses", value, setFormData)}
             placeholder="Enter your monthly expenses"
@@ -47,9 +63,9 @@ const Financial: React.FC = () => {
             helperText="Please enter your monthly expenses."
           />
           </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
+          <div className="question-row">
           <TextInput
-            question="Total liquid assets"
+            question="How much do you have in liquid assets? (cash, checking, savings)"
             value={formData.liquidAssets.value}
             onChange={(value) => handleInputChange("liquidAssets", value, setFormData)}
             placeholder="Enter your liquid assets"
@@ -58,7 +74,7 @@ const Financial: React.FC = () => {
             helperText="Please enter your liquid assets."
           />
           <TextInput
-            question="Net worth of long-term investments"
+            question="What is the net worth of your long-term investments? (401k, Roth IRA, stocks, property equity)"
             value={formData.longTermInvestments.value}
             onChange={(value) => handleInputChange("longTermInvestments", value, setFormData)}
             placeholder="Enter your long-term investments"
@@ -67,9 +83,9 @@ const Financial: React.FC = () => {
             helperText="Please enter your long-term investments."
           />
           </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", justifyContent:"end", width: "100%" }}>
+          <div className="question-row">
           <TextInput
-            question="Total outstanding debt"
+            question="What is your total outstanding debt? (credit cards, student loans, auto loans, mortgages, etc.)"
             value={formData.outstandingDebt.value}
             onChange={(value) => handleInputChange("outstandingDebt", value, setFormData)}
             placeholder="Outstanding Debt"
@@ -81,23 +97,24 @@ const Financial: React.FC = () => {
             question="Do you pay your credit cards and bills on time each month?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
+            value={formData.onTimePayments.value}
             onSelect={(value) => handleDropdownSelect("onTimePayments", value, setFormData)}
             isValid={formData.onTimePayments.isValid}
             helperText="Please select Yes or No."
           />
           </div>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", width: "100%" }}>
-
+          <div className="question-row">
           <Dropdown
-            question="Credit utilization rate"
+            question="What is your average credit utilization rate?"
             items={creditUtilizationOptions}
-            placeholder="Select your credit utilization rate"
+            placeholder="Select"
+            value={formData.creditUtilization.value}
             onSelect={(value) => handleDropdownSelect("creditUtilization", value, setFormData)}
             isValid={formData.creditUtilization.isValid}
             helperText="Please select your credit utilization rate."
           />
           <TextInput
-            question="Total available credit limit"
+            question="What is your total available credit limit across all cards and lines of credit?"
             value={formData.creditLimit.value}
             onChange={(value) => handleInputChange("creditLimit", value, setFormData)}
             placeholder="Enter your total credit limit"
@@ -110,6 +127,7 @@ const Financial: React.FC = () => {
             question="Do you have an emergency fund (3+ months of living expenses)?"
             items={emergencyFundOptions}
             placeholder="Select Yes, No, or Partially"
+            value={formData.emergencyFund.value}
             onSelect={(value) => handleDropdownSelect("emergencyFund", value, setFormData)}
             isValid={formData.emergencyFund.isValid}
             helperText="Please select Yes, No, or Partially."
@@ -118,6 +136,7 @@ const Financial: React.FC = () => {
             question="Have you filed for bankruptcy in the past 10 years?"
             items={yesNoOptions}
             placeholder="Select Yes or No"
+            value={formData.bankruptcy.value}
             onSelect={(value) => handleDropdownSelect("bankruptcy", value, setFormData)}
             isValid={formData.bankruptcy.isValid}
             helperText="Please select Yes or No."
@@ -130,6 +149,7 @@ const Financial: React.FC = () => {
             isValid={formData.financialAssistance.isValid}
             helperText="Please select all that apply."
           />
+          <NavigationButtons currentPath={"/financial"} isNextEnabled={!!isNextEnabled} />
         </div>
       </div>
   );

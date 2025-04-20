@@ -19,6 +19,15 @@ h3 {
     margin: 0;
 }
 
+p {
+    color: var(--Black-4, #5E6366);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 .input {
   padding: 12px 16px;
   flex-direction: space-between;
@@ -50,7 +59,7 @@ h3 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  padding-top: 175px;
 }
 
 .top-nav {
@@ -95,13 +104,11 @@ h3 {
   flex-direction: row;
   justify-content: center; 
   align-items: flex-start; 
-  padding-top: 175px;
   padding-bottom: 100px;
   width: 75%; 
   margin: 0 auto; 
   gap: 20px;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .question-set {
@@ -115,6 +122,8 @@ h3 {
 }
 
 .sidemenu {
+    position: sticky;
+    top: 100px;
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
@@ -166,6 +175,27 @@ h3 {
   line-height: normal;
 }
 
+.question-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.question-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.question-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 .textinputcontainer .textinputfield {
   display: flex;
   padding: 12px 16px;
@@ -200,6 +230,8 @@ h3 {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-self: stretch;
+  width: 100%;
 }
 
 .dropdown-container.focused .dropdown-toggle {
@@ -226,6 +258,7 @@ h3 {
   align-items: center;
   gap: 10px;
   flex: 1 0 0;
+  align-self: stretch;
 
   border-radius: 8px;
   border: 1px solid var(--Black-1, #cfd3d4);
@@ -392,4 +425,154 @@ line-height: normal;
 
 .submit-button:hover {
   background-color: #3b5bd1;
+}
+
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.back-button {
+  display: flex;
+  width: 225px;
+  padding: 16px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid #ABAFB1;
+  background:none;
+
+  color: #ABAFB1;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.next-button {
+  display: flex;
+  width: 225px;
+  padding: 16px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid #ABAFB1;
+  background:none;
+
+  color: #ABAFB1;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.next-button.active {
+  background-color: var(--variable-collection-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.score-container {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  align-items: center;
+  gap: 73px;
+}
+
+.score-header {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 23;
+}
+.total-score-display {
+  color: var(--Primary, #5570F1);
+  font-family: Inter;
+  font-size: 128px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.dropdown-info-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center; /* Ensures vertical centering of child elements */
+  align-items: center; /* Ensures horizontal centering of child elements */
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #CDCDCD;
+}
+
+.dropdown-info-header {
+  display: flex;
+  width: 100%;
+  padding-bottom: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-score-header {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  gap: 34px;
+}
+
+.dropdown-info-toggle {
+    all: unset;
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  flex-shrink: 0;
+}
+
+.dropdown-info-content {
+  display: flex;
+width: 80%;
+padding: 0px 23px;
+flex-direction:column;
+justify-content: left;
+align-items: left;
+gap: 10px;
+
+border-left: 1px solid #5E6366;
+
+color: #5E6366;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.dropdown-info-header h4 {
+  color:var(--variable-collection-primary);
+font-family: "Inter";
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.dropdown-info-header p {
+  color: var(--Black-4, #5E6366);
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
 }

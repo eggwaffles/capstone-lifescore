@@ -3,11 +3,13 @@
 import React from "react";
 import MultiSelect from "../../components/MultiSelect";
 import TextInput from "../../components/TextInput";
-import Dropdown from "../../components/Dropdown";
+import MultipleChoice from "../../components/MultipleChoice";
 import SideMenu from "../../components/SideMenu";
+import NavigationButtons from "../../components/NavigationButtons";
+
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
-import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
+import { handleMultipleChoiceSelect } from "../../utils/handleMultipleChoiceSelect";
 
 const Social: React.FC = () => {
   const { formData, setFormData } = useFormData();
@@ -17,18 +19,15 @@ const Social: React.FC = () => {
   ];
   const engagementFrequencyOptions = ["Daily", "Weekly", "Occasionally", "Rarely", "Never"];
   const linkedinConnectionsOptions = ["0–49", "50–199", "200–499", "500+"];
-  const communityOptions = [
-    "Professional organizations (e.g., IEEE, AMA, AIGA)",
-    "Religious or spiritual groups",
-    "Local clubs (book club, running group, etc.)",
-    "Alumni networks",
-    "Online communities",
-    "Other",
-    "None"
-  ];
-  const eventAttendanceOptions = ["Frequently", "Occasionally", "Rarely", "Never"];
-  const communitySupportOptions = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"];
   const yesNoOptions = ["Yes", "No"];
+
+  const isNextEnabled =
+    formData.activeSocialMedia.value &&
+    formData.totalFollowers.value &&
+    formData.engagementFrequency.value &&
+    formData.linkedinConnections.value &&
+    formData.mentoredSomeone.value &&
+    formData.beenMentored.value;
 
   return (
     <div className="quiz-container">
@@ -36,14 +35,12 @@ const Social: React.FC = () => {
         <div className="question-set">
           <h3>Social Score</h3>
           <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-end", width: "100%" }}>
-          <Dropdown
+          <MultipleChoice
             question="Do you actively use social media?"
             items={yesNoOptions}
-            placeholder="Select Yes or No"
             value={formData.activeSocialMedia.value}
-            onSelect={(value) => handleDropdownSelect("activeSocialMedia", value, setFormData)}
+            onSelect={(value) => handleMultipleChoiceSelect("activeSocialMedia", value, setFormData)}
             isValid={formData.activeSocialMedia.isValid}
-            helperText="Please select Yes or No."
           />
           <TextInput
             question="Estimated follower count across all platforms"
@@ -54,45 +51,38 @@ const Social: React.FC = () => {
             isValid={formData.totalFollowers.isValid}
             helperText="Please enter your total followers."
           />
-          <Dropdown
+          </div>
+          <MultipleChoice
             question="How often do you engage with your social media community (posts, replies, messages)?"
             items={engagementFrequencyOptions}
-            placeholder="Engagement frequency"
             value={formData.engagementFrequency.value}
-            onSelect={(value) => handleDropdownSelect("engagementFrequency", value, setFormData)}
+            onSelect={(value) => handleMultipleChoiceSelect("engagementFrequency", value, setFormData)}
             isValid={formData.engagementFrequency.isValid}
-            helperText="Please select your engagement frequency."
           />
-          </div>
-          <Dropdown
+          <MultipleChoice
             question="How many professional connections do you have on LinkedIn?"
             items={linkedinConnectionsOptions}
-            placeholder="Select your LinkedIn connections"
             value={formData.linkedinConnections.value}
-            onSelect={(value) => handleDropdownSelect("linkedinConnections", value, setFormData)}
+            onSelect={(value) => handleMultipleChoiceSelect("linkedinConnections", value, setFormData)}
             isValid={formData.linkedinConnections.isValid}
-            helperText="Please select your LinkedIn connections."
           />
           <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-end", width: "100%" }}>
-          <Dropdown
+          <MultipleChoice
             question="Have you mentored someone in a formal or informal capacity in the past year?"
             items={yesNoOptions}
-            placeholder="Select Yes or No"
             value={formData.mentoredSomeone.value}
-            onSelect={(value) => handleDropdownSelect("mentoredSomeone", value, setFormData)}
+            onSelect={(value) => handleMultipleChoiceSelect("mentoredSomeone", value, setFormData)}
             isValid={formData.mentoredSomeone.isValid}
-            helperText="Please select Yes or No."
           />
-          <Dropdown
+          <MultipleChoice
             question="Have you been mentored by someone in the past year?"
             items={yesNoOptions}
-            placeholder="Select Yes or No"
             value={formData.beenMentored.value}
-            onSelect={(value) => handleDropdownSelect("beenMentored", value, setFormData)}
+            onSelect={(value) => handleMultipleChoiceSelect("beenMentored", value, setFormData)}
             isValid={formData.beenMentored.isValid}
-            helperText="Please select Yes or No."
           />
           </div>
+          <NavigationButtons currentPath={"/social"} isNextEnabled={!!isNextEnabled} />
         </div>
       </div>
   );

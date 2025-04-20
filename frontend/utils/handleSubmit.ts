@@ -4,7 +4,7 @@ export const handleSubmit = async (formData: FormData) => {
   console.log("Form Data:", formData);
 
   try {
-    const response = await fetch("http://localhost:5000/submit", {
+    const response = await fetch("http://localhost:5000/process-success-score", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

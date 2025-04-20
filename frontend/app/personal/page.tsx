@@ -5,6 +5,8 @@ import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import DateInput from "../../components/DateInput";
 import SideMenu from "../../components/SideMenu";
+import NavigationButtons from "../../components/NavigationButtons";
+
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
@@ -21,6 +23,17 @@ const Personal: React.FC = () => {
     "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
     "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
   ];
+
+  const isNextEnabled =
+    formData.fullName.value &&
+    formData.birthday.value &&
+    formData.streetAddress.value &&
+    formData.city.value &&
+    formData.state.value &&
+    formData.zipCode.value &&
+    formData.phoneNumber.value &&
+    formData.email.value &&
+    formData.ssn.value;
 
   return (
     <div className="quiz-container">
@@ -91,7 +104,9 @@ const Personal: React.FC = () => {
             items={usStates}
             value={formData.state.value}
             placeholder="Select your state"
-            onSelect={(selected) =>handleDropdownSelect("state", selected, setFormData)}
+            onSelect={(selected) =>
+              handleDropdownSelect("state", selected, setFormData)
+            }
             isValid={formData.state.isValid}
             helperText="Please select your state."
           />
@@ -136,6 +151,7 @@ const Personal: React.FC = () => {
           isValid={formData.ssn.isValid}
           helperText="Please enter a valid SSN or National ID."
         />
+        <NavigationButtons currentPath={"/personal"} isNextEnabled={!!isNextEnabled} />
       </div>
     </div>
   );

@@ -2,12 +2,17 @@ import React from "react";
 
 interface SubmitButtonProps {
   label: string;
-  onClick?: () => void;
+  onClick: () => void;
+  disabled?: boolean;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick, disabled }) => {
   return (
-    <button onClick={onClick} className="submit-button">
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`submit-button ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+    >
       {label}
     </button>
   );

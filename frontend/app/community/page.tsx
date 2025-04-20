@@ -5,6 +5,7 @@ import MultiSelect from "../../components/MultiSelect";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import SideMenu from "../../components/SideMenu";
+import NavigationButtons from "../../components/NavigationButtons";
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
@@ -12,11 +13,6 @@ import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
 const Community: React.FC = () => {
   const { formData, setFormData } = useFormData();
 
-  const socialPlatformsOptions = [
-    "Instagram", "TikTok", "LinkedIn", "Facebook", "X (Twitter)", "Reddit", "Other"
-  ];
-  const engagementFrequencyOptions = ["Daily", "Weekly", "Occasionally", "Rarely", "Never"];
-  const linkedinConnectionsOptions = ["0–49", "50–199", "200–499", "500+"];
   const communityOptions = [
     "Professional organizations (e.g., IEEE, AMA, AIGA)",
     "Religious or spiritual groups",
@@ -29,6 +25,13 @@ const Community: React.FC = () => {
   const eventAttendanceOptions = ["Frequently", "Occasionally", "Rarely", "Never"];
   const communitySupportOptions = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"];
   const yesNoOptions = ["Yes", "No"];
+
+  const isNextEnabled =
+    formData.volunteering.value &&
+    formData.monthlyVolunteerHours.value &&
+    formData.eventAttendance.value &&
+    formData.communities.value &&
+    formData.communitySupport.value;
 
   return (
     <div className="quiz-container">
@@ -81,6 +84,7 @@ const Community: React.FC = () => {
             isValid={formData.communitySupport.isValid}
             helperText="Please select your level of agreement."
           />
+          <NavigationButtons currentPath={"/community"} isNextEnabled={!!isNextEnabled} />
         </div>
       </div>
   );
