@@ -49,6 +49,8 @@ export type FormData = {
   currentEnrollment: FormField;
   programType: FormField;
   fieldOfStudy: FormField;
+  highSchoolGpa: FormField;
+  collegeGpa: FormField;
   graduatedOnTime: FormField;
   honorsReceived: FormField;
   extraCertifications: FormField;
@@ -57,6 +59,12 @@ export type FormData = {
   firstGen: FormField;
   academicProbation: FormField;
   learningAttitude: FormField;
+  satScore: FormField;
+  actScore: FormField;
+  lsatScore: FormField;
+  greScore: FormField;
+  gmatScore: FormField;
+  mcatScore: FormField;
 
   // Profession Data
   industry: FormField;
@@ -142,6 +150,10 @@ export type FormData = {
   wearableDevice: FormField;
 
   // Social Data
+  relationshipStatus: FormField;
+  numberOfRelationships: FormField;
+  attachmentStyle: FormField;
+  longestRelationship: FormField;
   activeSocialMedia: FormField;
   totalFollowers: FormField;
   engagementFrequency: FormField;
@@ -298,6 +310,8 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
       componentType: "TextInput",
       inputType: "text",
     },
+    highSchoolGpa: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+  collegeGpa: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
     graduatedOnTime: {
       value: "",
       isValid: true,
@@ -326,6 +340,12 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
       componentType: "MultipleChoice",
     },
     learningAttitude: { value: "", isValid: true, componentType: "Dropdown" },
+    satScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+    actScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number"  },
+    lsatScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number"  },
+    greScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number"  },
+    gmatScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number"  },
+    mcatScore: { value: "", isValid: true, componentType: "NumberInput", inputType: "number"  },
 
     // Profession Data
     industry: {
@@ -582,6 +602,10 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
     wearableDevice: { value: "", isValid: true, componentType: "Dropdown" },
 
     // Social Data
+    relationshipStatus: { value: "", isValid: true, componentType: "Dropdown" },
+  numberOfRelationships: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
+  attachmentStyle: { value: "", isValid: true, componentType: "Dropdown" },
+  longestRelationship: { value: "", isValid: true, componentType: "NumberInput", inputType: "number" },
     activeSocialMedia: { value: "", isValid: true, componentType: "Dropdown" },
     totalFollowers: {
       value: "",

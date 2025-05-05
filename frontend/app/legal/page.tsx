@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Dropdown from "../../components/Dropdown";
 import MultipleChoice from "../../components/MultipleChoice";
 import SideMenu from "../../components/SideMenu";
@@ -8,15 +8,17 @@ import NavigationButtons from "../../components/NavigationButtons";
 
 import { useFormData } from "../../context/FormDataContext";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 
 const Legal: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion();
 
   const yesNoOptions = ["Yes", "No"];
   const driversLicenseOptions = ["Yes", "No", "Not Applicable"];
   const movingViolationsOptions = ["None", "1–2", "3–5", "More than 5"];
 
-  const isNextEnabled =
+  const isNextEnabled = Boolean(
     formData.misdemeanorConviction.value &&
     formData.felonyConviction.value &&
     formData.pendingCharges.value &&
@@ -30,7 +32,12 @@ const Legal: React.FC = () => {
     formData.duiConviction.value &&
     formData.atFaultAccident.value &&
     formData.paroleViolation.value &&
-    formData.legalDisputes.value;
+    formData.legalDisputes.value
+  );
+
+  useEffect(() => {
+    setPageCompletion("/legal", isNextEnabled);
+  }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">

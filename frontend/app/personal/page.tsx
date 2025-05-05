@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import DateInput from "../../components/DateInput";
@@ -10,9 +10,11 @@ import NavigationButtons from "../../components/NavigationButtons";
 import { useFormData } from "../../context/FormDataContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 
 const Personal: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion();
 
   const usStates = [
     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
@@ -24,16 +26,20 @@ const Personal: React.FC = () => {
     "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
   ];
 
-  const isNextEnabled =
-    formData.fullName.value &&
-    formData.birthday.value &&
-    formData.streetAddress.value &&
-    formData.city.value &&
-    formData.state.value &&
-    formData.zipCode.value &&
-    formData.phoneNumber.value &&
-    formData.email.value &&
-    formData.ssn.value;
+  const isNextEnabled = Boolean(
+      formData.fullName.value &&
+      formData.birthday.value &&
+      formData.streetAddress.value &&
+      formData.city.value &&
+      formData.state.value &&
+      formData.zipCode.value &&
+      formData.phoneNumber.value &&
+      formData.email.value
+  );
+
+  useEffect(() => {
+    setPageCompletion("/personal", isNextEnabled);
+  }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">
@@ -141,15 +147,6 @@ const Personal: React.FC = () => {
           type="email"
           isValid={formData.email.isValid}
           helperText="Please enter a valid email address."
-        />
-        <TextInput
-          question="Social Security Number / National ID"
-          value={formData.ssn.value}
-          onChange={(value) => handleInputChange("ssn", value, setFormData)}
-          placeholder="Enter your SSN or National ID"
-          type="number"
-          isValid={formData.ssn.isValid}
-          helperText="Please enter a valid SSN or National ID."
         />
         <NavigationButtons currentPath={"/personal"} isNextEnabled={!!isNextEnabled} />
       </div>

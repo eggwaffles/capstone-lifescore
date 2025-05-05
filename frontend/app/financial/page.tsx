@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import MultiSelect from "../../components/MultiSelect";
@@ -8,11 +8,13 @@ import SideMenu from "../../components/SideMenu";
 import NavigationButtons from "../../components/NavigationButtons";
 
 import { useFormData } from "../../context/FormDataContext";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
 
 const Financial: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion();
 
   const yesNoOptions = ["Yes", "No"];
   const emergencyFundOptions = ["Yes", "No", "Partially"];
@@ -24,8 +26,7 @@ const Financial: React.FC = () => {
     "Disability or SSI", "Other", "None"
   ];
 
-  // Check if all required fields are filled and valid
-  const isNextEnabled =
+  const isNextEnabled = Boolean(
     formData.monthlyIncome.value &&
     formData.monthlyExpenses.value &&
     formData.liquidAssets.value &&
@@ -36,14 +37,19 @@ const Financial: React.FC = () => {
     formData.creditLimit.value &&
     formData.emergencyFund.value &&
     formData.bankruptcy.value &&
-    formData.financialAssistance.value;
+    formData.financialAssistance.value
+  );
+
+  useEffect(() => {
+    setPageCompletion("/financial", isNextEnabled);
+  }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">
-        <SideMenu />
-        <div className="question-set">
-          <h3>Financial Information</h3>
-          <div className="question-row">
+      <SideMenu />
+      <div className="question-set">
+        <h3>Financial Information</h3>
+        <div className="question-row">
           <TextInput
             question="What is your average monthly income?"
             value={formData.monthlyIncome.value}
@@ -62,8 +68,8 @@ const Financial: React.FC = () => {
             isValid={formData.monthlyExpenses.isValid}
             helperText="Please enter your monthly expenses."
           />
-          </div>
-          <div className="question-row">
+        </div>
+        <div className="question-row">
           <TextInput
             question="How much do you have in liquid assets? (cash, checking, savings)"
             value={formData.liquidAssets.value}
@@ -82,8 +88,8 @@ const Financial: React.FC = () => {
             isValid={formData.longTermInvestments.isValid}
             helperText="Please enter your long-term investments."
           />
-          </div>
-          <div className="question-row">
+        </div>
+        <div className="question-row">
           <TextInput
             question="What is your total outstanding debt? (credit cards, student loans, auto loans, mortgages, etc.)"
             value={formData.outstandingDebt.value}
@@ -102,8 +108,8 @@ const Financial: React.FC = () => {
             isValid={formData.onTimePayments.isValid}
             helperText="Please select Yes or No."
           />
-          </div>
-          <div className="question-row">
+        </div>
+        <div className="question-row">
           <Dropdown
             question="What is your average credit utilization rate?"
             items={creditUtilizationOptions}
@@ -122,36 +128,36 @@ const Financial: React.FC = () => {
             isValid={formData.creditLimit.isValid}
             helperText="Please enter your total credit limit."
           />
-          </div>
-          <Dropdown
-            question="Do you have an emergency fund (3+ months of living expenses)?"
-            items={emergencyFundOptions}
-            placeholder="Select Yes, No, or Partially"
-            value={formData.emergencyFund.value}
-            onSelect={(value) => handleDropdownSelect("emergencyFund", value, setFormData)}
-            isValid={formData.emergencyFund.isValid}
-            helperText="Please select Yes, No, or Partially."
-          />
-          <Dropdown
-            question="Have you filed for bankruptcy in the past 10 years?"
-            items={yesNoOptions}
-            placeholder="Select Yes or No"
-            value={formData.bankruptcy.value}
-            onSelect={(value) => handleDropdownSelect("bankruptcy", value, setFormData)}
-            isValid={formData.bankruptcy.isValid}
-            helperText="Please select Yes or No."
-          />
-          <MultiSelect
-            question="Are you currently enrolled in or receiving any of the following financial assistance programs?"
-            items={financialAssistanceOptions}
-            selectedValues={formData.financialAssistance.value.split(",")}
-            onChange={(values) => handleInputChange("financialAssistance", values.join(","), setFormData)}
-            isValid={formData.financialAssistance.isValid}
-            helperText="Please select all that apply."
-          />
-          <NavigationButtons currentPath={"/financial"} isNextEnabled={!!isNextEnabled} />
         </div>
+        <Dropdown
+          question="Do you have an emergency fund (3+ months of living expenses)?"
+          items={emergencyFundOptions}
+          placeholder="Select Yes, No, or Partially"
+          value={formData.emergencyFund.value}
+          onSelect={(value) => handleDropdownSelect("emergencyFund", value, setFormData)}
+          isValid={formData.emergencyFund.isValid}
+          helperText="Please select Yes, No, or Partially."
+        />
+        <Dropdown
+          question="Have you filed for bankruptcy in the past 10 years?"
+          items={yesNoOptions}
+          placeholder="Select Yes or No"
+          value={formData.bankruptcy.value}
+          onSelect={(value) => handleDropdownSelect("bankruptcy", value, setFormData)}
+          isValid={formData.bankruptcy.isValid}
+          helperText="Please select Yes or No."
+        />
+        <MultiSelect
+          question="Are you currently enrolled in or receiving any of the following financial assistance programs?"
+          items={financialAssistanceOptions}
+          selectedValues={formData.financialAssistance.value.split(",")}
+          onChange={(values) => handleInputChange("financialAssistance", values.join(","), setFormData)}
+          isValid={formData.financialAssistance.isValid}
+          helperText="Please select all that apply."
+        />
+        <NavigationButtons currentPath={"/financial"} isNextEnabled={!!isNextEnabled} />
       </div>
+    </div>
   );
 };
 

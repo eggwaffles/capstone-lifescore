@@ -1,16 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import SideMenu from "../../components/SideMenu";
 import NavigationButtons from "../../components/NavigationButtons";
 import { useFormData } from "../../context/FormDataContext";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
 
 const Demographic: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion();
 
   const maritalStatusOptions = ["Single", "Married", "Divorced", "Widowed", "Domestic Partnership"];
   const ethnicBackgroundOptions = [
@@ -35,7 +37,7 @@ const Demographic: React.FC = () => {
     "Yes – Active Duty", "Yes – Veteran", "No", "Prefer not to say"
   ];
 
-  const isNextEnabled =
+  const isNextEnabled = Boolean(
     formData.maritalStatus.value &&
     formData.numberOfChildren.value &&
     formData.householdSize.value &&
@@ -47,7 +49,12 @@ const Demographic: React.FC = () => {
     formData.genderIdentity.value &&
     formData.sexualOrientation.value &&
     formData.disabilityStatus.value &&
-    formData.veteranStatus.value;
+    formData.veteranStatus.value
+  );
+
+  useEffect(() => {
+    setPageCompletion("/demographic", isNextEnabled);
+  }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">

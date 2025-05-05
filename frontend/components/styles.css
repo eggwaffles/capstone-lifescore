@@ -99,6 +99,18 @@ p {
     line-height: normal;
 }
 
+.start-quiz-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 100px;
+  width: 50%; 
+  margin: 0 auto; 
+  gap: 20px;
+  box-sizing: border-box;
+}
+
 .quiz-container {
   display: flex;
   flex-direction: row;
@@ -122,21 +134,30 @@ p {
 }
 
 .sidemenu {
-    position: sticky;
-    top: 100px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 8px;
-    border: 1px solid var(--Gray1, #CFD3D4);
+  position: sticky;
+  top: 100px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--Gray1, #CFD3D4);
+  width: max-content;
+  text-decoration: none;
 }
 
 .sidemenu-item {
-    display: inline-flex;
-    padding: 20px 24px;
-    align-items: center;
-    gap: 10px;
-    color: var(--Black-5, #2B2F32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 10px;
+  width: 100%;
+  width: 250px;
+  height: 64px;
+  color: var(--Black-5, #2B2F32);
+  box-sizing: border-box;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .sidemenu-item:hover {
@@ -144,18 +165,23 @@ p {
 }
 
 .sidemenu-item.selected {
-    border-left: 4px solid var(--Primary, #5570F1);
-    background: rgba(85, 112, 241, 0.05);
+  border-left: 4px solid var(--Primary, #5570F1);
+  background: rgba(85, 112, 241, 0.05);
 }
 
 .sidemenu-label {
-    width: 240px;
-    color: var(--Black-5, #2B2F32);
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  flex: 1; /* Allow label to fill available space */
+  color: var(--Black-5, #2B2F32);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .textinputcontainer {
@@ -482,36 +508,66 @@ line-height: normal;
   cursor: pointer;
 }
 
+.container {
+  display: flex;
+  width: 70%;
+  padding-top: 82px;
+  padding-bottom: 82px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 29px;
+}
+
 .score-container {
   display: flex;
-  width: 60%;
-  flex-direction: column;
-  align-items: center;
-  gap: 73px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 175px;
+  align-self: stretch;
 }
 
 .score-header {
   display:flex;
   flex-direction: column;
-  align-items: center;
-  gap: 23;
+  align-items: flex-start;
+  gap: 36px;
 }
+
+.score-header h3 {
+  color: var(--Black-4, #5E6366);
+  font-family: Inter;
+  font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.score-header h2 {
+  color: #A8AFB3;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .total-score-display {
   color: var(--Primary, #5570F1);
   font-family: Inter;
-  font-size: 128px;
+  font-size: 160px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 80%;
 }
 
 .dropdown-info-container {
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center; /* Ensures vertical centering of child elements */
-  align-items: center; /* Ensures horizontal centering of child elements */
-  padding-bottom: 12px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
 
   border-bottom: 1px solid #CDCDCD;
 }
@@ -576,3 +632,60 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
+
+.qualify-container {
+  display: flex;
+  padding: 40px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 19px;
+  align-self: stretch;
+  border-top: 1px solid #CDCDCD;
+}
+
+.qualification-box {
+  display: flex;
+  width: 275px;
+min-width: 25%;
+max-width: 50%;
+flex-grow: 1;
+padding: 28px 24px;
+
+flex-direction: column;
+align-items: flex-start;
+align-self: stretch;
+gap: 16px;
+border-radius: 8px;
+border: 1px solid var(--Primary, #5570F1);
+}
+
+.qualification-grid {
+  display: flex;
+align-items: flex-start;
+align-content: flex-start;
+gap: 24px;
+align-self: stretch;
+flex-wrap: wrap;
+}
+
+.qualification-box h4{
+  align-self: stretch;
+  color: #5570F1;
+font-family: "SF Pro Text";
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin: 0px;
+
+}
+
+.qualification-box p{
+  color: #5E6366;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+

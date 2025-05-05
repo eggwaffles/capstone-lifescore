@@ -1,17 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import MultiSelect from "../../components/MultiSelect";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import SideMenu from "../../components/SideMenu";
 import NavigationButtons from "../../components/NavigationButtons";
 import { useFormData } from "../../context/FormDataContext";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
 
 const Community: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion(); // Access setPageCompletion from context
 
   const communityOptions = [
     "Professional organizations (e.g., IEEE, AMA, AIGA)",
@@ -20,25 +22,39 @@ const Community: React.FC = () => {
     "Alumni networks",
     "Online communities",
     "Other",
-    "None"
+    "None",
   ];
   const eventAttendanceOptions = ["Frequently", "Occasionally", "Rarely", "Never"];
   const communitySupportOptions = ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"];
   const yesNoOptions = ["Yes", "No"];
 
-  const isNextEnabled =
+  // Check if all required fields are filled and valid
+  const isNextEnabled = Boolean(
     formData.volunteering.value &&
-    formData.monthlyVolunteerHours.value &&
-    formData.eventAttendance.value &&
-    formData.communities.value &&
-    formData.communitySupport.value;
+      formData.monthlyVolunteerHours.value &&
+      formData.eventAttendance.value &&
+      formData.communities.value &&
+      formData.communitySupport.value
+  );
+
+  useEffect(() => {
+      setPageCompletion("/community", isNextEnabled);
+    }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">
-        <SideMenu />
-        <div className="question-set">
-          <h3>Community Involvement</h3>
-          <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-end", width: "100%" }}>
+      <SideMenu />
+      <div className="question-set">
+        <h3>Community Involvement</h3>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            alignItems: "flex-end",
+            width: "100%",
+          }}
+        >
           <Dropdown
             question="Do you regularly participate in volunteering or community service?"
             items={yesNoOptions}
@@ -66,27 +82,27 @@ const Community: React.FC = () => {
             isValid={formData.eventAttendance.isValid}
             helperText="Attendance frequency."
           />
-          </div>
-          <MultiSelect
-            question="Are you currently part of any communities or organizations?"
-            items={communityOptions}
-            selectedValues={formData.communities.value.split(",")}
-            onChange={(values) => handleInputChange("communities", values.join(","), setFormData)}
-            isValid={formData.communities.isValid}
-            helperText="Please select all that apply."
-          />
-          <Dropdown
-            question="Do you feel supported by your community or social network?"
-            items={communitySupportOptions}
-            placeholder="Select your level of agreement"
-            value={formData.communitySupport.value}
-            onSelect={(value) => handleDropdownSelect("communitySupport", value, setFormData)}
-            isValid={formData.communitySupport.isValid}
-            helperText="Please select your level of agreement."
-          />
-          <NavigationButtons currentPath={"/community"} isNextEnabled={!!isNextEnabled} />
         </div>
+        <MultiSelect
+          question="Are you currently part of any communities or organizations?"
+          items={communityOptions}
+          selectedValues={formData.communities.value.split(",")}
+          onChange={(values) => handleInputChange("communities", values.join(","), setFormData)}
+          isValid={formData.communities.isValid}
+          helperText="Please select all that apply."
+        />
+        <Dropdown
+          question="Do you feel supported by your community or social network?"
+          items={communitySupportOptions}
+          placeholder="Select your level of agreement"
+          value={formData.communitySupport.value}
+          onSelect={(value) => handleDropdownSelect("communitySupport", value, setFormData)}
+          isValid={formData.communitySupport.isValid}
+          helperText="Please select your level of agreement."
+        />
+        <NavigationButtons currentPath={"/community"} isNextEnabled={!!isNextEnabled} />
       </div>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import TextInput from "../../components/TextInput";
 import Dropdown from "../../components/Dropdown";
 import MultiSelect from "../../components/MultiSelect";
@@ -9,11 +9,13 @@ import SideMenu from "../../components/SideMenu";
 import NavigationButtons from "../../components/NavigationButtons";
 
 import { useFormData } from "../../context/FormDataContext";
+import { usePageCompletion } from "../../context/PageCompletionContext";
 import { handleInputChange } from "../../utils/handleInputChange";
 import { handleDropdownSelect } from "../../utils/handleDropdownSelect";
 
 const Health: React.FC = () => {
   const { formData, setFormData } = useFormData();
+  const { setPageCompletion } = usePageCompletion();
 
   const generalHealthOptions = ["Excellent", "Good", "Fair", "Poor"];
   const yesNoOptions = ["Yes", "No"];
@@ -21,30 +23,7 @@ const Health: React.FC = () => {
   const exerciseFrequencyOptions = ["0", "1–2", "3–4", "5+"];
   const checkupOptions = ["Annual physical", "Eye exam", "Dental checkup", "None"];
 
-  const isNextEnabled =
-    formData.abnormalBleeding.value &&
-    formData.convulsionsEpilepsy.value &&
-    formData.heartSurgery.value &&
-    formData.pacemaker.value &&
-    formData.addAdhd.value &&
-    formData.crohnsDisease.value &&
-    formData.hemophilia.value &&
-    formData.psychiatricCare.value &&
-    formData.aids.value &&
-    formData.depression.value &&
-    formData.hepatitis.value &&
-    formData.radiationTreatments.value &&
-    formData.anemia.value &&
-    formData.diabetes.value &&
-    formData.herpes.value &&
-    formData.respiratoryDisease.value &&
-    formData.anxiety.value &&
-    formData.difficultyBreathing.value &&
-    formData.highBloodPressure.value &&
-    formData.rheumaticScarletFever.value &&
-    formData.arthritis.value &&
-    formData.emphysema.value &&
-    formData.hiv.value &&
+  const isNextEnabled = Boolean(
     formData.seizures.value &&
     formData.artificialHeartValve.value &&
     formData.epilepsyOrSeizures.value &&
@@ -70,7 +49,6 @@ const Health: React.FC = () => {
     formData.tobaccoUse.value &&
     formData.birthControl.value &&
     formData.otherMedicalConditions.value &&
-    formData.generalHealth.value &&
     formData.smokeOrVape.value &&
     formData.alcoholConsumption.value &&
     formData.exerciseFrequency.value &&
@@ -78,7 +56,12 @@ const Health: React.FC = () => {
     formData.completedCheckups.value &&
     formData.medications.value &&
     formData.mentalHealthSupport.value &&
-    formData.wearableDevice.value;
+    formData.wearableDevice.value
+  );
+
+  useEffect(() => {
+    setPageCompletion("/health", isNextEnabled);
+  }, [isNextEnabled]);
 
   return (
     <div className="quiz-container">
@@ -464,8 +447,10 @@ const Health: React.FC = () => {
           <TextInput
             question="What medications do you currently take for physical or mental health?"
             value={formData.medications.value}
+            onChange={(value) => handleInputChange("medications", value, setFormData)}
+            placeholder="Please list your medications"
             isValid={formData.medications.isValid}
-            helperText="Please select Yes or No."
+            helperText="Please enter valid medications"
           />
 
           <Dropdown

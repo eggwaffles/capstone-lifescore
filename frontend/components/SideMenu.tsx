@@ -3,9 +3,11 @@
 import React from "react";
 import SideMenuItem from "./SideMenuItem";
 import { usePathname } from "next/navigation";
+import { usePageCompletion } from "../context/PageCompletionContext";
 
 const SideMenu: React.FC = () => {
   const pathname = usePathname();
+  const { pageCompletion } = usePageCompletion();
 
   const menuItems = [
     { id: 1, label: "Personal & Contact", link: "/personal" },
@@ -28,6 +30,7 @@ const SideMenu: React.FC = () => {
           label={item.label}
           link={item.link}
           isSelected={pathname === item.link}
+          showIcon={pageCompletion[item.link]} // Show checkmark if the page is complete
         />
       ))}
     </div>
